@@ -5,7 +5,7 @@ class Task(models.Model):
     description = models.TextField()
     status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('completed', 'Completed')])
     created_at = models.DateTimeField(auto_now_add=True)
-    user_id = models.CharField(max_length=255)
+    user_id = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.title
