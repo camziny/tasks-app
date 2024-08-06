@@ -1,3 +1,6 @@
+import TaskListPage from "@/components/TaskList";
+import Link from "next/link";
+
 async function getData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks/`);
 
@@ -10,18 +13,13 @@ async function getData() {
 
 export default async function Page() {
   const data = await getData();
-  console.log("data", data);
 
   return (
     <main>
-      <h1>Task List</h1>
-      <ul>
-        {data.map((task: any) => (
-          <li key={task.id}>
-            {task.title} - {task.status}
-          </li>
-        ))}
-      </ul>
+      <div className="p-2 bg-gray-500 text-white text-center">
+        <Link href="/add-task">Add a Task</Link>
+      </div>
+      <TaskListPage tasks={data} />
     </main>
   );
 }
